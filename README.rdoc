@@ -1,7 +1,8 @@
 = Easy Google App Engine's URLFetch service jruby library
 
 == Overview
-Easy access to Google's App Engine.
+Easy access to Google's App Engine URLFetch Service.
+You need something like this if you want to use NET:HTTP things, cause NET:HTTP is NOT supported by GAE.
   response = URLFetch.get(url)
   response = URLFetch.head(url)
   response = URLFetch.post(url,payload)

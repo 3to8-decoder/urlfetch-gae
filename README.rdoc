@@ -15,10 +15,10 @@ You need something like this if you want to use NET:HTTP things, cause NET:HTTP 
   response.code
   => 200  #or 404 or whatever
   
-  response.headers
+  response.header
   => [['Set-Cookie','ses=13213'],['Set-Cookie','ses2=53222'],etc...]
   
-  response.headers
+  response.header_hash
   => {'Set-Cookie' => 'ses2=53222' } 
   #Doesn't support double headers
   #That is infact a problem plaging many http and rest libs.

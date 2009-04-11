@@ -31,25 +31,25 @@ You can also provide your own headers for a request.
 == Limitations
 Due to limitations set by google not everything is possible.
 http://code.google.com/intl/nl/appengine/docs/java/urlfetch/
-*http:// is always port 80
-*https:// is always port 443
-*Only 5 automatic redirects, You can however turn it off and do it yourself. (Not yet implemented)
-*Max request size:	1 megabyte
-*Max response size:	1 megabyte
+* http:// is always port 80
+* https:// is always port 443
+* Only 5 automatic redirects, You can however turn it off and do it yourself. (Not yet implemented)
+* Max request size:	1 megabyte
+* Max response size:	1 megabyte
 
 For security reasons, the following headers cannot be modified by the application:
-*Content-Length
-*Host
-*Referer
-*User-Agent
-*Vary
-*Via
-*X-Forwarded-For
+* Content-Length
+* Host
+* Referer
+* User-Agent
+* Vary
+* Via
+* X-Forwarded-For
 
 == Todo
-*Implement the options (AllowTruncate and FollowRedirects)
-*Better Error handling
-*Providing a drop in replacement for NET:HTTP
+* Implement the options (AllowTruncate and FollowRedirects)
+* Better Error handling
+* Providing a drop in replacement for NET:HTTP
 
 == Meta
 Made by:

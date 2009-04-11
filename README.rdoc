@@ -35,6 +35,20 @@ The truncate option means truncate your response if it is bigger then 1 megabyte
 If you have truncate set to false and your response is bigger then 1 megabyte it will throw an error.
 
 Setting redirect to false means that URLFetchService will no longer automaticly redirect when an 3xx response code returns. This automatic redirecting is limited to 5 redirects so if you have a page that redirects more then 5 times you can turn redirecting off and do it yourself.
+
+== Handle Errors
+URLFetch throws a few kinds of errors
+    java.net.MalformedURLException - If the provided URL is malformed. 
+    java.io.IOException - If the remote service could not be contacted or the URL could not be fetched. 
+    ResponseTooLargeException - If :truncate => false on request and the response is too large. Some responses are too large to even retrieve from the remote server, and in these cases the exception is thrown even if response truncation is enabled.
+  
+The most common error you will have to capture is java.io.IOException.
+Here is a quick example:
+    begin
+      return URLFetch.get("http://"+params[:site]).to_s
+    rescue java.io.IOException
+      return "The remote service could not be contacted or the URL could not be fetched."
+    end
   
 == Limitations
 Due to limitations set by google not everything is possible.
@@ -55,8 +69,9 @@ For security reasons, the following headers cannot be modified by the applicatio
 * X-Forwarded-For
 
 == Todo
-* Better Error handling
 * Providing a drop in replacement for NET:HTTP
+* Maybe some built-in cookie support
+
 
 == Meta
 Made by:

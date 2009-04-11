@@ -48,7 +48,10 @@ module URLFetch
     HTTPResponse.new UFS::Service.fetch(request)
   end
   def self.request_object url,method=:GET,payload=nil,options={}
-    req = UFS::HTTPRequest.new(UFS::URL.new(url),UFS::HTTPMethod.valueOf(method.to_s))
+    opt = UFS::FetchOptions::Builder.allowTruncate unless options[:truncate] == false  
+    opt = UFS::FetchOptions::Builder.disallowTruncate if options[:truncate] == false    
+    opt = opt.doNotFollowRedirects if options[:redirect] == false    
+    req = UFS::HTTPRequest.new(UFS::URL.new(url),UFS::HTTPMethod.valueOf(method.to_s),opt)
     req.payload = payload.to_java_bytes if payload != nil
     if options[:header]
       options[:header].each do |key,value|

@@ -27,6 +27,14 @@ You need something like this if you want to use NET:HTTP things, cause NET:HTTP 
 You can also provide your own headers for a request.
   URLFetch.get(url,:header => {'Cookie' => 'ses=12143' })
 
+== Options
+You can specify google's FetchOptions: allowTruncate and allowRedirect
+  URLFetch.get(url,:redirect => false, :truncate = false)
+  #Default is :redirect => true and :truncate => true
+Truncate means truncate your request if it is bigger then 1 megabyte. 
+If you have truncate set to false and request is bigger then 1 megabyte it will throw and error.
+
+Setting redirect to false means that URLFetchService will no longer automaticly redirect when an 3xx response code returns. This automatic redirecting is limited to 5 redirects so of you have a page that redirects more then 5 times you turn redirecting off and do it yourself.
   
 == Limitations
 Due to limitations set by google not everything is possible.
@@ -47,7 +55,6 @@ For security reasons, the following headers cannot be modified by the applicatio
 * X-Forwarded-For
 
 == Todo
-* Implement the options (AllowTruncate and FollowRedirects)
 * Better Error handling
 * Providing a drop in replacement for NET:HTTP
 
